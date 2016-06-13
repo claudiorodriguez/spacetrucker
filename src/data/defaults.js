@@ -2,5 +2,6 @@
 
 module.exports = {
   startingSystem: 'sol',
-  startingShip: 'lugger'
+  startingShip: 'lugger',
+  startingCredits: 1000
 };

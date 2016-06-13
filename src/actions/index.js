@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-  MoveAction: require('./MoveAction')
+  MoveAction: require('./MoveAction'),
+  DockAction: require('./DockAction')
 };

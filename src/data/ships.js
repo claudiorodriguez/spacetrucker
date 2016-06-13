@@ -5,6 +5,7 @@ module.exports = [
     id: 'lugger',
     name: 'Lugger',
     cargoCapacity: 10,
-    fuelCapacity: 10
+    fuelCapacity: 10,
+    fuelRate: 1
   }
 ];
