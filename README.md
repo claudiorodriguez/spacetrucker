@@ -29,8 +29,6 @@ Feel free to raise issues and send PRs. Make sure the tests run.
 
 ## License ##
 
-## License
-
 MIT - see [LICENSE][license-url]
 
 [logo-url]: https://github.com/claudiorodriguez/spacetrucker/blob/master/docs/assets/spacetrucker.png
