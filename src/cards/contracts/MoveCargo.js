@@ -1,7 +1,9 @@
 'use strict';
+const Card = require('../Card');
 
-class MoveCargo {
+class MoveCargo extends Card {
   constructor({ cargoSpace, ware, reward, maxDate, origin, destination, game }) {
+    super();
     this.cargoSpace = cargoSpace;
     this.ware = ware;
     this.cargo = { ware: this.ware, amount: this.cargoSpace };

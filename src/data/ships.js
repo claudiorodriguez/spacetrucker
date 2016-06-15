@@ -6,6 +6,6 @@ module.exports = [
     name: 'Lugger',
     cargoCapacity: 10,
     fuelCapacity: 10,
-    fuelRate: 1
+    defaultComponents: ['Drive.basic']
   }
 ];

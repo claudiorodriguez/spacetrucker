@@ -1,20 +1,25 @@
 'use strict';
 const CardHolder = require('./CardHolder');
+const { Drive } = require('./cards/components');
+const { getComponentCard } = require('./helpers');
 
 class Ship extends CardHolder {
-  constructor({ id, name, cargoCapacity, fuelCapacity, fuelRate }) {
+  constructor({ id, name, cargoCapacity, fuelCapacity, defaultComponents }) {
     super();
     this.id = id;
     this.name = name;
     this.cargoCapacity = cargoCapacity;
     this.fuelCapacity = fuelCapacity;
-    this.fuelRate = fuelRate;
     this.fuel = this.fuelCapacity;
     this.cargo = [];
+    if (defaultComponents) {
+      defaultComponents.forEach(componentId => this.addCard(getComponentCard(componentId)));
+    }
   }
 
   onMove(distance) {
-    const requiredFuel = distance * this.fuelRate;
+    const fuelRate = this.getCardsOfClass(Drive)[0].calculate('fuelRate');
+    const requiredFuel = distance * fuelRate;
     if (this.fuel < requiredFuel) {
       throw new Error('Not enough fuel to move');
     }
@@ -37,6 +42,14 @@ class Ship extends CardHolder {
 
   occupiedCargo() {
     return this.cargo.reduce((acc, item) => acc + item.amount, 0);
+  }
+
+  addCard(card) {
+    if (card instanceof Drive && this.getCardsOfClass(Drive).length) {
+      throw new Error('Ships can only have one drive component');
+    }
+
+    super.addCard(card);
   }
 
   onDock() {

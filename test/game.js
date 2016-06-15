@@ -9,10 +9,11 @@ const defaults = require('../src/data/defaults');
 const { MoveAction, DockAction } = require('../src/actions');
 const { NoEventResult } = require('../src/results');
 const { MoveCargo } = require('../src/cards/contracts');
+const { Drive } = require('../src/cards/components');
 
 describe('Game', () => {
 
-  it('should consume fuel when moving', (done) => {
+  it('should consume fuel according to drive component when moving', (done) => {
     const player = new Player({ name: 'John' });
     const game = new Game({ player });
     expect(player.ship.id).to.eql(getShip(defaults.startingShip).id);
@@ -30,7 +31,9 @@ describe('Game', () => {
     expect(makeMove).to.not.throw(Error);
     expect(turnResult).to.be.an.instanceof(NoEventResult);
     expect(game.currentSystem.id).to.eql(newSystemId);
-    expect(player.ship.fuel).to.eql(player.ship.fuelCapacity - 1);
+    console.log('------', player.ship.getCardsOfClass(Drive));
+    const fuelRate = player.ship.getCardsOfClass(Drive)[0].calculate('fuelRate');
+    expect(player.ship.fuel).to.eql(player.ship.fuelCapacity - fuelRate);
 
     done();
   });
