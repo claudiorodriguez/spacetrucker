@@ -31,7 +31,6 @@ describe('Game', () => {
     expect(makeMove).to.not.throw(Error);
     expect(turnResult).to.be.an.instanceof(NoEventResult);
     expect(game.currentSystem.id).to.eql(newSystemId);
-    console.log('------', player.ship.getCardsOfClass(Drive));
     const fuelRate = player.ship.getCardsOfClass(Drive)[0].calculate('fuelRate');
     expect(player.ship.fuel).to.eql(player.ship.fuelCapacity - fuelRate);
 
