@@ -10,7 +10,10 @@ function getPath({ startId, destId }) {
   const hash = node => node.id;
   const heuristic = (node) =>
     Math.abs(Math.floor(
-      Math.sqrt((node.x - end.x) * (node.x - end.x) + (node.y - end.y) * (node.y - end.y)) / 40
+      Math.sqrt(
+        (node.coords.x - end.coords.x) * (node.coords.x - end.coords.x) +
+        (node.coords.y - end.coords.y) * (node.coords.y - end.coords.y)
+      ) / 40
     ));
   const distance = () => 1;
 
